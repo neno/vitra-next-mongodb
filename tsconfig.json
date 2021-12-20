@@ -15,6 +15,18 @@
     "jsx": "preserve",
     "incremental": true
   },
+  "paths": {
+    "@/*": ["*"],
+    "@/api/*": ["./pages/api/*"],
+    "@/components/*": ["./components/*"],
+    "@/fonts/*": ["./public/fonts/*"],
+    "@/helpers/*": ["./src/helpers/*"],
+    "@/icons/*": ["./public/icons/*"],
+    "@/lib": ["./lib/*"],
+    "@/middleware/*": ["./middleware/*"],
+    "@/pages/*": ["./pages/*"],
+    "@/types/*": ["./src/types/*"]
+  },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
