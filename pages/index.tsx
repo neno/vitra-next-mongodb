@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { ListItem } from '../components/list-item';
 import { fetchObjectItems } from '../lib/api-calls';
 import { IObjectItem } from '../types';
 
@@ -9,7 +10,15 @@ interface IPageProps {
 const Home: NextPage<IPageProps> = ({ objects }) => {
   return (
     <div>
-      <pre>{JSON.stringify(objects, null, 2)}</pre>
+      {objects.map((obj) => (
+        <ListItem
+          key={obj.id}
+          id={obj.id}
+          title={obj.title}
+          imageUrl={obj.image}
+          text={obj.designer}
+        />
+      ))}
     </div>
   );
 };
