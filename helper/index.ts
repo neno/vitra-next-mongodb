@@ -22,7 +22,7 @@ export const mapDocumentsToObjectItems = (
     id: doc._id,
     title: doc?.ObjObjectTitleTxt ?? '',
     subTitle: doc?.ObjObjectTitleSubTxt ?? '',
-    dating: doc?.ObjDateGrp_DateFromTxt ?? '',
+    dating: doc?.ObjDateTxt ?? '',
     designer: doc?.ObjDesigner ?? '',
     highlight: doc?.ObjHighlight ?? '',
     image: doc?.ObjMultimediaRel?.[0]?.MulUrl ?? '',
@@ -34,23 +34,29 @@ export function mapDocumentToObject(doc: IObjectServer): IObject {
     id: doc._id,
     title: doc?.ObjObjectTitleTxt ?? '',
     subTitle: doc?.ObjObjectTitleSubTxt ?? '',
-    dating: doc?.ObjDateGrp_DateFromTxt ?? '',
+    dating: doc?.ObjDateTxt ?? '',
     designer: doc?.ObjDesigner ?? '',
     highlight: doc?.ObjHighlight ?? '',
-    image: doc?.ObjMultimediaRel?.[0]?.MulUrl ?? '',
+    image: doc?.ObjMultimediaRel?.[0]?.MulUrl ?? null,
     material: doc.ObjMaterialTechniqueTxt ?? '',
     dimensions: doc.ObjDimension ?? '',
     designed: doc.ObjDateGrp_DateFromTxt ?? '',
     firstProduction: doc.ObjDateGrp_Notes2Clb ?? '',
     type: doc.ObjCategoryVoc,
     inventoryNo: doc.ObjObjectNumberGrp_Part1Txt ?? '',
-    description: doc.ObjMarkdown ?? '',
+    description: doc.ObjMarkdown
+      ? doc.ObjMarkdown.replace(/<br><br>/g, '<br>')
+      : '',
     relatedObjects:
       doc.ObjObjectRel?.map((obj: IObjectRelation) => ({
         id: obj.ObjId,
-        title: obj.ObjObjectTitleTxt ?? '',
-        dating: obj.ObjDateGrp_DateFromTxt ?? '',
-        image: obj.ObjUrl ?? '',
+        title: createTitleString(
+          obj.ObjObjectTitleTxt ?? '',
+          obj.ObjObjectTitleSubTxt ?? '',
+          obj.ObjDateGrp_DateFromTxt ?? ''
+        ),
+        text: obj.ObjDesigner ?? '',
+        image: obj.ObjUrl ?? null,
       })) ?? [],
     relatedDesigners:
       doc.ObjPersonRel?.filter(
@@ -58,8 +64,8 @@ export function mapDocumentToObject(doc: IObjectServer): IObject {
       ).map((per: IPersonRelation) => ({
         id: per.PerId,
         title: per.PerNameTxt ?? '',
-        dating: per.PerDatingTxt ?? '',
-        image: per.PerUrl ?? '',
+        text: per.PerDatingTxt ?? '',
+        image: per.PerUrl ?? null,
       })) ?? [],
     relatedManufacturers:
       doc.ObjPersonRel?.filter(
@@ -67,8 +73,18 @@ export function mapDocumentToObject(doc: IObjectServer): IObject {
       ).map((per: IPersonRelation) => ({
         id: per.PerId,
         title: per.PerNameTxt ?? '',
-        dating: per.PerDatingTxt ?? '',
-        image: per.PerUrl ?? '',
+        text:
+          [per.PerBirthPlaceCity, per.PerBirthPlaceCountry].join(', ') ?? '',
+        image: per.PerUrl ?? null,
       })) ?? [],
   };
 }
+
+export const createTitleString = (
+  title: string,
+  subTitle: string,
+  designed: string
+): string => {
+  const str = `${title} ${subTitle}`.trim();
+  return str ? `${str}, ${designed}` : designed;
+};

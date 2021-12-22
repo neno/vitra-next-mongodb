@@ -23,7 +23,7 @@ export const ListItem: FC<IListItemProps> = ({ id, imageUrl, title, text }) => {
       <div className="flex-1 ml-4">
         <Link href={`/products/${id}`}>
           <a>
-            <h3 className="text-xl md:text-2xl text-gray-800">{title}</h3>
+            <h3 className="text-xl md:text-xl">{title}</h3>
           </a>
         </Link>
         <p className="text-base md:text-xl text-gray-400">{text}</p>

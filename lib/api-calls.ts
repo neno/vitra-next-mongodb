@@ -59,7 +59,7 @@ const objectItemProjection = {
   _id: 1,
   ObjObjectTitleTxt: 1,
   ObjObjectTitleSubTxt: 1,
-  ObjDateGrp_DateFromTxt: 1,
+  ObjDateTxt: 1,
   ObjDesigner: 1,
   ObjHighlight: 1,
   ObjMultimediaRel: 1,

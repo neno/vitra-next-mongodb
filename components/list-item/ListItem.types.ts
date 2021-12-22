@@ -1,6 +1,6 @@
 export interface IListItemProps {
-  id: string;
-  imageUrl?: string;
-  title?: string;
-  text?: string;
+  id: number;
+  imageUrl: string | null;
+  title: string;
+  text: string;
 }

@@ -6,7 +6,7 @@ export interface IObjectItemServer {
   _id: string;
   ObjObjectTitleTxt?: string; // Title
   ObjObjectTitleSubTxt?: string; // Subtitle
-  ObjDateGrp_DateFromTxt?: string; // Dating
+  ObjDateTxt?: string; // Dating
   ObjDesigner?: string; // Designer
   ObjHighlight?: string; // ?
   ObjMultimediaRel?: {
@@ -18,7 +18,7 @@ export interface IObjectItemServer {
 
 export interface IObjectServer extends IObjectItemServer {
   ObjCategoryVoc: string; // Object Type
-  ObjDateGrp_DateFromTxt?: string; // Designed
+  ObjDateGrp_DateFromTxt?: string; // Designed / Entwurfsdatum
   ObjMaterialTechniqueTxt?: string; // Material
   ObjDimension?: string; // Dimensions
   ObjMarkdown?: string; // Description
@@ -31,13 +31,16 @@ export interface IObjectServer extends IObjectItemServer {
 export interface IPersonRelation {
   PerId: number; // Id
   PerNameTxt: string; // Name
-  PerDatingTxt?: string; // Dating
   PerTypeVoc: PersonType; // Type
-  PerUrl: string; // Image
+  PerDatingTxt?: string; // Dating
+  PerBirthPlaceCity?: string;
+  PerBirthPlaceCountry?: string;
+  PerUrl?: string; // Image
 }
 export interface IObjectRelation {
   ObjId: number; // Id
   ObjObjectTitleTxt?: string; // Title
+  ObjObjectTitleSubTxt?: string; // Subtitle
   ObjDateGrp_DateFromTxt?: string; // Dating
   ObjDesigner?: string; // Designer
   ObjUrl?: string; // Image
