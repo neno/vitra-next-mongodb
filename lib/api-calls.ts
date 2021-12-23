@@ -15,15 +15,17 @@ const getFetchApiData = (
   collection: TDbCollection,
   projection: { [key: string]: number },
   limit: number | null = null,
-  filter: { [key: string]: string | number } = {}
+  filter: { [key: string]: string | number } = {},
+  skip: 0
 ) =>
   JSON.stringify({
     collection,
     database: process.env.DATABASE as string,
     dataSource: process.env.DATASOURCE as string,
-    // projection,
-    // limit,
+    projection,
+    limit,
     filter,
+    skip,
   });
 
 const getFetchConfig = (data: string): RequestInit => ({
@@ -59,16 +61,15 @@ const objectItemProjection = {
   _id: 1,
   ObjObjectTitleTxt: 1,
   ObjObjectTitleSubTxt: 1,
-  ObjDateTxt: 1,
+  ObjDateGrp_DateFromTxt: 1,
   ObjDesigner: 1,
-  ObjHighlight: 1,
   ObjMultimediaRel: 1,
 };
 
 const objectProjection = {
   ...objectItemProjection,
   ObjCategoryVoc: 1,
-  ObjDateGrp_DateFromTxt: 1,
+  ObjDateTxt: 1,
   ObjMaterialTechniqueTxt: 1,
   ObjDimension: 1,
   ObjMarkdown: 1,

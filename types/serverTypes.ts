@@ -6,7 +6,7 @@ export interface IObjectItemServer {
   _id: string;
   ObjObjectTitleTxt?: string; // Title
   ObjObjectTitleSubTxt?: string; // Subtitle
-  ObjDateTxt?: string; // Dating
+  ObjDateGrp_DateFromTxt?: string; // Designed / Entwurfsdatum
   ObjDesigner?: string; // Designer
   ObjHighlight?: string; // ?
   ObjMultimediaRel?: {
@@ -18,7 +18,7 @@ export interface IObjectItemServer {
 
 export interface IObjectServer extends IObjectItemServer {
   ObjCategoryVoc: string; // Object Type
-  ObjDateGrp_DateFromTxt?: string; // Designed / Entwurfsdatum
+  ObjDateTxt?: string; // Dating / Produktionsdatum von - bis
   ObjMaterialTechniqueTxt?: string; // Material
   ObjDimension?: string; // Dimensions
   ObjMarkdown?: string; // Description

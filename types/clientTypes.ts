@@ -2,16 +2,15 @@ export interface IObjectItem {
   id: string;
   title: string;
   subTitle: string;
-  dating: string;
+  designed: string;
   designer: string;
-  highlight: string;
   image: string | null;
 }
 
 export interface IObject extends IObjectItem {
   material: string;
   dimensions: string;
-  designed: string;
+  dating: string;
   firstProduction: string;
   type: string;
   inventoryNo: string;
